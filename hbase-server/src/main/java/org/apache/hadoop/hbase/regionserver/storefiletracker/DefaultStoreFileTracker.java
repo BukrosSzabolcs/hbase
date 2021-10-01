@@ -39,6 +39,11 @@ class DefaultStoreFileTracker extends StoreFileTrackerBase {
   }
 
   @Override
+  void init() {
+    // NOOP
+  }
+
+  @Override
   public List<StoreFileInfo> load() throws IOException {
     List<StoreFileInfo> files =
       ctx.getRegionFileSystem().getStoreFiles(ctx.getFamily().getNameAsString());

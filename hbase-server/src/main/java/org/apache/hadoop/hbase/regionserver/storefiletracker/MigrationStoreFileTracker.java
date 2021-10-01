@@ -47,8 +47,14 @@ class MigrationStoreFileTracker extends StoreFileTrackerBase {
     super(conf, isPrimaryReplica, ctx);
     this.src = StoreFileTrackerFactory.createForMigration(conf, SRC_IMPL, isPrimaryReplica, ctx);
     this.dst = StoreFileTrackerFactory.createForMigration(conf, DST_IMPL, isPrimaryReplica, ctx);
+  }
+
+  @Override
+  void init() {
     Preconditions.checkArgument(!src.getClass().equals(dst.getClass()),
       "src and dst is the same: %s", src.getClass());
+    this.src.init();
+    this.dst.init();
   }
 
   @Override
@@ -89,8 +95,8 @@ class MigrationStoreFileTracker extends StoreFileTrackerBase {
   }
 
   @Override
-  public void persistConfiguration(TableDescriptorBuilder builder) {
-    super.persistConfiguration(builder);
+  public void updateDescriptor(TableDescriptorBuilder builder) {
+    super.updateDescriptor(builder);
     if (StringUtils.isEmpty(builder.getValue(SRC_IMPL))) {
       builder.setValue(SRC_IMPL, src.getTrackerName());
     }
