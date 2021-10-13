@@ -108,4 +108,12 @@ public class MasterRpcServicesVersionWrapper
       throws ServiceException {
     return masterRpcServices.reportFileArchival(controller, request);
   }
+
+  @Override
+  public RegionServerStatusProtos.FileBasedStoreFileCleanerUsageResponse reportFileBasedStoreFileCleanerUsage(
+    RpcController controller,
+    RegionServerStatusProtos.FileBasedStoreFileCleanerUsageRequest request)
+    throws ServiceException {
+    return masterRpcServices.reportFileBasedStoreFileCleanerUsage(controller, request);
+  }
 }

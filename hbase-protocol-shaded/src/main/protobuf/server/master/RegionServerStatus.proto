@@ -163,6 +163,17 @@ message ReportProcedureDoneRequest {
 message ReportProcedureDoneResponse {
 }
 
+message FileBasedStoreFileCleanerUsageRequest {
+  required string server_name = 1;
+  required uint64 runtime = 2;
+  optional uint64 deleted_files = 3;
+  optional uint64 failed_deletes = 4;
+  required uint32 runs = 5;
+}
+
+message FileBasedStoreFileCleanerUsageResponse {
+}
+
 message FileArchiveNotificationRequest {
   message FileWithSize {
     optional TableName table_name = 1;
@@ -217,4 +228,7 @@ service RegionServerStatusService {
   /** Reports files that were moved to the archive directory for space quotas */
   rpc ReportFileArchival(FileArchiveNotificationRequest)
     returns(FileArchiveNotificationResponse);
+
+  rpc ReportFileBasedStoreFileCleanerUsage(FileBasedStoreFileCleanerUsageRequest)
+    returns(FileBasedStoreFileCleanerUsageResponse);
 }

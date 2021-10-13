@@ -92,7 +92,7 @@ class FileBasedStoreFileTracker extends StoreFileTrackerBase {
   }
 
   @Override
-  protected boolean requireWritingToTmpDirFirst() {
+  public boolean requireWritingToTmpDirFirst() {
     return false;
   }
 

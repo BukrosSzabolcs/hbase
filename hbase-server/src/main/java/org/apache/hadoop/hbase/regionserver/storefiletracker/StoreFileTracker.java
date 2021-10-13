@@ -84,4 +84,11 @@ public interface StoreFileTracker {
    * @param builder The table descriptor builder for the given table.
    */
   void updateDescriptor(TableDescriptorBuilder builder);
+
+  /**
+   * Whether the implementation of this tracker requires you to write to temp directory first, i.e,
+   * does not allow broken store files under the actual data directory.
+   */
+  boolean requireWritingToTmpDirFirst();
+
 }
